@@ -1,7 +1,7 @@
 @Library('my-shared-library')
 
 pipeline{
-	agent {label 'slave1'}
+	agent any
 	
 
 	stages{
@@ -12,7 +12,7 @@ pipeline{
 						if(params.action == 'create'){
 							 	gitcheckout(
                     							branch: "main",
-                    							url: "<your_git_repo_url>"
+                    							url: "https://github.com/Shivu1802/Java_app_3.0.git"
                 						)
 							}
 						else {

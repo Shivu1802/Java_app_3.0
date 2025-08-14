@@ -18,10 +18,7 @@ pipeline {
 			steps {
 				script {
 		if (params.action == 'create') {
-			gitcheckout(
-				branch: "main",
-				url: "https://github.com/Shivu1802/Java_app_3.0.git"
-			)
+			git branch: "main", url: "https://github.com/Shivu1802/Java_app_3.0.git"
 		}
 		else {
 			echo "Skipping Git Checkout as action is set to delete."

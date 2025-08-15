@@ -54,6 +54,9 @@ pipeline {
 		
 
 		stage("Static Code Analysis: Sonarqube") {
+			when {
+				expression { params.action == 'create' }
+			}
 			steps {
 				script {
 					def SonarQubecredentialsId = 'sonarqube-api'
@@ -63,6 +66,9 @@ pipeline {
 		}
 
 		stage("Quality Gate Status Check: SonarQube") {
+			when {
+				expression { params.action == 'create' }
+			}
 			steps {
 				script {
 					def SonarQubecredentialsId = 'sonarqube-api'
@@ -146,19 +152,18 @@ pipeline {
 				}
 			}
 		}
-
-		// post {
-		// 	always {
-		// 		echo "Build Completed"
-		// 	}
-		// 	success {
-		// 		echo "Pipeline completed successfully."
-		// 	}
-		// 	failure {
-		// 		echo "Build Failed! Please refer to the troubleshooting guide at https://github.com/Shivu1802/Java_app_3.0/wiki/Troubleshooting or check the build logs for details."
-		// 	}
-		// }
-
-
 	}
+		post {
+			always {
+				echo "Build Completed"
+			}
+			success {
+				echo "Pipeline completed successfully."
+			}
+			failure {
+				echo "Build Failed! Please refer to the troubleshooting guide at https://github.com/Shivu1802/Java_app_3.0/wiki/Troubleshooting or check the build logs for details."
+			}
+		}
+
+	
 }

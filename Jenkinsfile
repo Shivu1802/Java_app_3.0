@@ -27,9 +27,8 @@ pipeline {
 			}
 		}
 
-		stage("Testing Stages") {
-			parallel {
-				stage("Unit Test:maven") {
+		
+		stage("Unit Test:maven") {
 					when {
 						expression { params.action == 'create' }
 					}
@@ -40,7 +39,7 @@ pipeline {
 					}
 				}
 
-				stage("Integration Test:maven") {
+		stage("Integration Test:maven") {
 					when {
 						expression { params.action == 'create' }
 					}
@@ -50,8 +49,8 @@ pipeline {
 						}
 					}
 				}
-			}
-		}
+			
+		
 		
 
 		stage("Static Code Analysis: Sonarqube") {
